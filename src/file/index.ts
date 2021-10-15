@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import * as XLSX from 'xlsx';
 import { strings } from './../string/index';
 
