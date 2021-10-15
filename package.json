@@ -4,7 +4,7 @@
   "description": "A helper methods for javascript in ts",
   "main": "index.js",
   "scripts": {
-    "eslint": "eslint . --ext .ts",
+    "lint": "eslint . --ext .ts",
     "fix-lint": "eslint . --ext .ts --fix",
     "prepare": "husky install",
     "build": "tsc"
