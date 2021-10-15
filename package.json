@@ -1,0 +1,25 @@
+{
+  "name": "tyroidjs",
+  "version": "1.0.0",
+  "description": "A helper methods for javascript in ts",
+  "main": "index.js",
+  "scripts": {
+    "eslint": "eslint . --ext .ts",
+    "fix-lint": "eslint . --ext .ts --fix",
+    "prepare": "husky install",
+    "build": "tsc"
+  },
+  "repository": "https://github.com/tawol-technologies/tyroid.git)",
+  "author": "tawol technologies limited",
+  "license": "MIT",
+  "dependencies": {
+    "@types/xlsx": "^0.0.36",
+    "typescript": "^4.4.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.1",
+    "husky": "^7.0.0"
+  }
+}
