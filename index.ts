@@ -1,7 +1,7 @@
 
-import { strings } from './src/string/index';
-import { files } from './src/file/index';
-import { objects } from './src/object/index';
+import { strings } from './strings/index';
+import { files } from './files/index';
+import { objects } from './objects/index';
 
 const tyroid = {
     strings, files, objects

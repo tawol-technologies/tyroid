@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import * as XLSX from 'xlsx';
-import { strings } from './../string/index';
+import { strings } from './../strings/index';
 
 const getExtFromMime = (mime: string, prefixDot?: boolean): string => {
   const slashIndex = mime.lastIndexOf('/');
