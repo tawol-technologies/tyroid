@@ -26,10 +26,6 @@ function excludeObjectEntries<T>(object: Record<string, unknown>, entryKeys: Arr
       return result;
     }, form);
   }
-  
-  const isEmpty = (obj: unknown) => {
-    return obj === null || obj === undefined;
-  }
 
   export const objects = {
       excludeObjectEntries, objectToFormData
