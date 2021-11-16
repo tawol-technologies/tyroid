@@ -1,3 +1,24 @@
+
+/**
+ * 
+ * @param data numbers
+ * @returns 
+ */
+const  addAll = (array: Array<any>) => {
+    return array.reduce((result, entry) => { return result + entry; }, 0) ;
+  }
+
+/**
+ * Generate array percentage
+ */
+
+const arrayOfNumberToPercentage = (arr: Array<number>) => {
+    return arr.map(x => x / addAll(arr) * 100);
+}
+
+
+
+
 /**
  * It destructures all objects in the array into an object and returns it.
  * @param objects Array<{}>
@@ -21,7 +42,8 @@ export const subtract = (operand1: string[], operand2: string[]): string [] => {
 }
 
 export const arrays = {
-    mergeObjects,
+    mergeObjects, 
+    arrayOfNumberToPercentage,
     iterate,
     subtract
 };
