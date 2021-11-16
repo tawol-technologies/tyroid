@@ -9,13 +9,19 @@
     return obj;
 }
 
-export const iterate = <T>(array: T[], callback: (item: T, isLast: boolean, index?: number)=>void) => {
+export const iterate = <T> (array: T[], callback: (item: T, isLast: boolean, index?: number)=>void): void => {
     
     array.forEach((entry, index) => {
         callback(entry, array.length-1 === index, index);
     });
 }
+
+export const subtract = (operand1: string[], operand2: string[]): string [] => {
+    return operand1.filter(str => !operand2.includes(str));
+}
+
 export const arrays = {
     mergeObjects,
-    iterate
+    iterate,
+    subtract
 };
