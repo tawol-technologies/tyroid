@@ -4,7 +4,7 @@
  * @param data numbers
  * @returns 
  */
-const  addAll = (array: Array<any>) => {
+const  addAll = (array: Array<number>) => {
     return array.reduce((result, entry) => { return result + entry; }, 0) ;
   }
 
@@ -12,7 +12,7 @@ const  addAll = (array: Array<any>) => {
  * Generate array percentage
  */
 
-const arrayOfNumberToPercentage = (arr: Array<number>) => {
+const arrayOfNumberToPercentage = (arr: Array<number>): Array<number> => {
     return arr.map(x => x / addAll(arr) * 100);
 }
 
