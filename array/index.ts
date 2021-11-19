@@ -4,16 +4,32 @@
  * @param data numbers
  * @returns 
  */
-const  addAll = (array: Array<any>) => {
-    return array.reduce((result, entry) => { return result + entry; }, 0) ;
-  }
+const addAll = (array: Array<any>) => {
+  return array.reduce((result, entry) => { return result + entry; }, 0);
+}
 
 /**
  * Generate array percentage
  */
 
-const arrayOfNumberToPercentage = (arr: Array<number>) => {
-    return arr.map(x => x / addAll(arr) * 100);
+const arrayOfNumberToPercentage = (arr: Array<number>): Array<number> => {
+  return arr.map(x => x / addAll(arr) * 100);
+}
+
+
+const makeNumbers = (min: number, max: number, reverse: boolean): Array<number> => {
+  const res = [];
+  for (let i = min; i <= max; i++) {
+    if (reverse) {
+      res.unshift(i)
+    } else res.push(i);
+  }
+  return res;
+}
+
+
+const makeNumbers2 = (length: number): number[] => {
+  return Array.from(Array(length));
 }
 
 
@@ -24,26 +40,27 @@ const arrayOfNumberToPercentage = (arr: Array<number>) => {
  * @param objects Array<{}>
  * @returns object
  */
- export const mergeObjects = (objects: Record<string, unknown>[]):Record<string, unknown> => {
-    let obj:Record<string, unknown> = {};
-    objects.forEach(o => obj = {...obj, ...o});
-    return obj;
+export const mergeObjects = (objects: Record<string, unknown>[]): Record<string, unknown> => {
+  let obj: Record<string, unknown> = {};
+  objects.forEach(o => obj = { ...obj, ...o });
+  return obj;
 }
 
-export const iterate = <T> (array: T[], callback: (item: T, isLast: boolean, index?: number)=>void): void => {
-    
-    array.forEach((entry, index) => {
-        callback(entry, array.length-1 === index, index);
-    });
+export const iterate = <T>(array: T[], callback: (item: T, isLast: boolean, index?: number) => void): void => {
+
+  array.forEach((entry, index) => {
+    callback(entry, array.length - 1 === index, index);
+  });
 }
 
-export const subtract = (operand1: string[], operand2: string[]): string [] => {
-    return operand1.filter(str => !operand2.includes(str));
+export const subtract = (operand1: string[], operand2: string[]): string[] => {
+  return operand1.filter(str => !operand2.includes(str));
 }
 
 export const arrays = {
-    mergeObjects, 
-    arrayOfNumberToPercentage,
-    iterate,
-    subtract
+  mergeObjects,
+  arrayOfNumberToPercentage,
+  makeNumbers,
+  iterate,
+  subtract
 };
