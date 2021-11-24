@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios, { Method } from 'axios';
 import { TResponseType } from './responseType';
 
 export interface IAxios<T> {
-    method: "POST" | "PUT" | "DELETE" | "GET",
+    method: Method | "POST" | "PUT" | "DELETE" | "GET",
     url?: string,
     data?: T,
     onSuccess(response: IAxiosHTTPResponse<T>):void,
@@ -11,10 +11,10 @@ export interface IAxios<T> {
     responseType?: TResponseType
 }
 
-export const axiosHttp = <T>(request: IAxios<T>) => {
+export const axiosHttp = <T>(request: IAxios<T>): void => {
     axios.request({
         responseType: request.responseType ?? "json",
-        method: request.method,
+        method: request.method ?? "POST",
         url: request.url,
         headers: request.headers,
         data: request.data
