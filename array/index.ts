@@ -37,6 +37,13 @@ export const iterate = <T> (array: T[], callback: (item: T, isLast: boolean, ind
     });
 }
 
+/**
+ * Remove operand2 from operand1, then returns items left in operand1
+ * 
+ * @param operand1 Array<string>
+ * @param operand2 Array<string>
+ * @returns Array<string>
+ */
 export const subtract = (operand1: string[], operand2: string[]): string [] => {
     return operand1.filter(str => !operand2.includes(str));
 }
