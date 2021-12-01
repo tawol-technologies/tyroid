@@ -39,11 +39,11 @@ const stringToCamelCase = (gapCase: string): string => {
     return /^[a-z]*$/.test(arg);
   }
 
-  const destructureCamelCase = (str: string, splitter: string): string => {
+  const destructureCamelCase = (str: string, splitter?: string): string => {
     let res = str[0];
     for (let i = 1; i < str.length; i++) {
       if(isUpperCase(str[i])) {
-        res += splitter + str[i];
+        res += (splitter ?? " ") + str[i];
         continue;
       }
       res += str[i];
@@ -51,6 +51,31 @@ const stringToCamelCase = (gapCase: string): string => {
     return res;
   }
 
+  /**
+   * Build string as camel case
+   * @param str 
+   * @param joinBy 
+   * @returns 
+   */
+  const buildCamelCase = (str: string, joinBy?: string): string => {
+    let res = str[0];
+    let transformNext = false;
+    for (let i = 1; i < str.length; i++) {
+      if(str[i] === (joinBy ?? "_")) {
+        transformNext = true;
+        continue;
+      }
+      if(transformNext) {
+        res += str[i].toUpperCase();
+        transformNext = false;
+      }
+      else {
+        res += str[i];
+      }
+    }
+    return res;
+  }
+
   export const strings = {
-      stringToCamelCase, errorToString, isUpperCase, isLowerCase, destructureCamelCase
+      stringToCamelCase, errorToString, isUpperCase, isLowerCase, destructureCamelCase, buildCamelCase
   }
