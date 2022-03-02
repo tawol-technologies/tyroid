@@ -12,7 +12,7 @@ export const getKeyValues = (data: Array<Record<string, unknown>>, key: string):
     return res;
 }
 
-export const charsIncluded = (data: string, chars: string[]): number => {
+export const countCharsInData = (data: string, chars: string[]): number => {
     let counter: number = 0;
     for (let i = 0; i < chars.length; i++) {
         if(data.includes(chars[i])) {
@@ -22,14 +22,13 @@ export const charsIncluded = (data: string, chars: string[]): number => {
     return counter;
 }
 
-export const search = (data: Array<Record<string, object>>, value: string): Array<Record<string, object>> => {
+export const search = (data: Array<Record<string, object>>, searchChars: string[]): Array<Record<string, object>> => {
     let res:Array<Record<string, object>> = [];
-    const searchChars: string[] = value.split("");
     let elementMatchCounter: number = 0;
     data.forEach(element => {
         let objMatchCounter: number = 0;
         for (const key in element) {
-            const num: number = charsIncluded(element[key]+"" , searchChars)
+            const num: number = countCharsInData(element[key]+"" , searchChars)
             if (num > objMatchCounter) {
                 objMatchCounter = num;
             }
@@ -47,5 +46,5 @@ export const search = (data: Array<Record<string, object>>, value: string): Arra
 }
 
 export default {
-    getKeyValues, charsIncluded, search
+    getKeyValues, charsIncluded: countCharsInData, search
 }
