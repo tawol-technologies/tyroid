@@ -22,7 +22,7 @@ export const countCharsInData = (data: string, chars: string[]): number => {
     return counter;
 }
 
-export const search = (data: Array<Record<string, object>>, searchChars: string[]): Array<Record<string, object>> => {
+export const sortObjectValuesByChars = (data: Array<Record<string, object>>, searchChars: string[]): Array<Record<string, object>> => {
     let res:Array<Record<string, object>> = [];
     let elementMatchCounter: number = 0;
     data.forEach(element => {
@@ -46,5 +46,5 @@ export const search = (data: Array<Record<string, object>>, searchChars: string[
 }
 
 export default {
-    getKeyValues, charsIncluded: countCharsInData, search
+    getKeyValues, countCharsInData, sortObjectValuesByChars
 }
