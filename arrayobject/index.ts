@@ -28,11 +28,12 @@ export const sortObjectValuesByChars = (data: Array<Record<string, object>>, sea
     data.forEach(element => {
         let objMatchCounter: number = 0;
         for (const key in element) {
+            let num: number = 0;
            if(key.includes(searchChars.join(","))){
            num = searchChars.length;
            } else {
            
-            num: number = countCharsInData(element[key]+"" , searchChars)
+            num = countCharsInData(element[key]+"" , searchChars)
             }
             if (num > objMatchCounter) {
                 objMatchCounter = num;
