@@ -17,6 +17,7 @@
     "rules": {
         "no-console":"error",
         "no-useless-constructor": "error",
-        "arrow-spacing": "error"
+        "arrow-spacing": "error",
+        "linebreak-style": "off"
     }
 }

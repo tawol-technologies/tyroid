@@ -1,11 +1,11 @@
 import * as XLSX from 'xlsx';
-import { strings } from './../strings/index';
+import {strings} from './../strings/index';
 
 /**
- * 
+ *
  * @param mime  The mime type e.g application/json
  * @param prefixDot It adds prefix the result with a dot if true.
- * @returns the mime's lower bound e.g application/json will return json.
+ * @return the mime's lower bound e.g application/json will return json.
  */
 const getExtFromMime = (mime: string, prefixDot?: boolean): string => {
   const slashIndex = mime.lastIndexOf('/');
@@ -20,7 +20,7 @@ const getExtFromMime = (mime: string, prefixDot?: boolean): string => {
  * @param csv The comma delimited sheet.
  * @param rowDelimeter The row delimeter used in the sheet.
  * @param columnsDelimeter The columns delimeter used in the sheet
- * @returns Record<string, string>[]
+ * @return Record<string, string>[]
  */
 const csvToJSON = (csv: string, rowDelimeter: string, columnsDelimeter: string): Record<string, string>[] => {
   const rows: string[] = csv.split(rowDelimeter);
@@ -52,8 +52,8 @@ const csvToJSON = (csv: string, rowDelimeter: string, columnsDelimeter: string):
 /**
  * It reads a file and return a datatype.
  * @param file The file to be read
- * @param resultType The returned result type and denotes how the file should be read. 
- * @returns It returns a promise of string or arrayBuffer.
+ * @param resultType The returned result type and denotes how the file should be read.
+ * @return It returns a promise of string or arrayBuffer.
  */
 const readFile = <T>(file: File, resultType: 'blob'|'arraybuffer'|'binary'|'text'): Promise<T> => new Promise((resolve, reject) => {
   try {
@@ -89,7 +89,7 @@ const readFile = <T>(file: File, resultType: 'blob'|'arraybuffer'|'binary'|'text
  * It returns an array of objects from the a worksheet.
  * @param file The sheet file.
  * @param callback The array of objects.
- * @returns Promise<Record<string, string>[]>.  
+ * @return Promise<Record<string, string>[]>.
  */
 const sheetToArray = (file: File, callback?: (jsonArray: Record<string, string>[]) => void): Promise<Record<string, string>[]> => {
   const rowDelimeter = '^^^';
@@ -101,7 +101,7 @@ const sheetToArray = (file: File, callback?: (jsonArray: Record<string, string>[
       fileReader.onload = (e) => {
         const buffer = e.target?.result;
 
-        const workbook = XLSX.read(buffer, { type: 'binary' });
+        const workbook = XLSX.read(buffer, {type: 'binary'});
         const sheetOption = {
           skipHidden: true, strip: true, RS: rowDelimeter, FS: columnDelimeter,
         };
@@ -124,14 +124,14 @@ const sheetToArray = (file: File, callback?: (jsonArray: Record<string, string>[
  * It renames a file.
  * @param file The Fle to be renamed.
  * @param newName The new name.
- * @returns Promise<File>
+ * @return Promise<File>
  */
 const renameFile = async (file: File, newName: string):Promise<File> => {
   const arrayBuffer = await file.arrayBuffer();
-  return new File([new Int8Array(arrayBuffer)], newName + getExtFromMime(file.type, true), { type: file.type, lastModified: file.lastModified });
+  return new File([new Int8Array(arrayBuffer)], newName + getExtFromMime(file.type, true), {type: file.type, lastModified: file.lastModified});
 };
 
 
 export const files = {
-    getExtFromMime, csvToJSON, readFile, sheetToArray, renameFile
-}
+  getExtFromMime, csvToJSON, readFile, sheetToArray, renameFile,
+};
