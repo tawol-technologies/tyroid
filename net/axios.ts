@@ -1,27 +1,27 @@
-import axios, { Method } from 'axios';
-import { TResponseType } from './responseType';
+import axios, {Method} from 'axios';
+import {TResponseType} from './responseType';
 
 export interface IAxios<T> {
-    method: Method | "POST" | "PUT" | "DELETE" | "GET",
+    method: Method | 'POST' | 'PUT' | 'DELETE' | 'GET',
     url?: string,
     data?: T,
     onSuccess(response: IAxiosHTTPResponse<T>):void,
     onFailure(error: IAxiosHTTPError):void,
-    headers?: Record<string,string>,
+    headers?: Record<string, string>,
     responseType?: TResponseType
 }
 
 export const axiosHttp = <T>(request: IAxios<T>): void => {
-    axios.request({
-        responseType: request.responseType ?? "json",
-        method: request.method ?? "POST",
-        url: request.url,
-        headers: request.headers,
-        data: request.data
-    })
-    .then((res) => request.onSuccess((res as unknown) as IAxiosHTTPResponse<T>))
-    .catch((res) => request.onFailure((res as unknown) as IAxiosHTTPError));
-}
+  axios.request({
+    responseType: request.responseType ?? 'json',
+    method: request.method ?? 'POST',
+    url: request.url,
+    headers: request.headers,
+    data: request.data,
+  })
+      .then((res) => request.onSuccess((res as unknown) as IAxiosHTTPResponse<T>))
+      .catch((res) => request.onFailure((res as unknown) as IAxiosHTTPError));
+};
 
 export interface IAxiosHTTPResponse<T> {
     data: T;

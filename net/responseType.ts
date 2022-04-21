@@ -1,4 +1,4 @@
-export type TResponseType =   | 'arraybuffer'
+export type TResponseType = | 'arraybuffer'
 | 'blob'
 | 'document'
 | 'json'
