@@ -8,16 +8,18 @@ export interface IAxios<T> {
     onSuccess(response: IAxiosHTTPResponse<T>):void,
     onFailure(error: IAxiosHTTPError):void,
     headers?: Record<string,string>,
-    responseType?: TResponseType
+    responseType?: TResponseType,
+    withCredentials?: boolean,
 }
 
-export const axiosHttp = <T>(request: IAxios<T>): void => {
-    axios.request({
+export const axiosHttp = <T> (request: IAxios<T>) => {
+    axios({
         responseType: request.responseType ?? "json",
         method: request.method ?? "POST",
         url: request.url,
         headers: request.headers,
-        data: request.data
+        data: request.data,
+        withCredentials: request.withCredentials,
     })
     .then((res) => request.onSuccess((res as unknown) as IAxiosHTTPResponse<T>))
     .catch((res) => request.onFailure((res as unknown) as IAxiosHTTPError));
