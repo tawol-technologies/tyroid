@@ -1,8 +1,8 @@
-import axios, { Method } from 'axios';
-import { TResponseType } from './responseType';
+import axios, {Method} from 'axios';
+import {TResponseType} from './responseType';
 
 export interface IAxios<T> {
-    method: Method | "POST" | "PUT" | "DELETE" | "GET",
+    method: Method | 'POST' | 'PUT' | 'DELETE' | 'GET',
     url?: string,
     data?: T,
     onSuccess(response: IAxiosHTTPResponse<T>):void,
