@@ -80,11 +80,11 @@ const randomString = (length: number) => {
   let res = '';
   for (let i = 0; i < length; i++) {
     const randomNum = Math.floor(Math.random() * chars.length);
-    res += chars.substring(randomNum, randomNum+1);    
+    res += chars.substring(randomNum, randomNum+1);
   }
   return res;
-}
+};
 
 export const strings = {
-  stringToCamelCase, errorToString, isUpperCase, isLowerCase, destructureCamelCase, buildCamelCase, randomString
+  stringToCamelCase, errorToString, isUpperCase, isLowerCase, destructureCamelCase, buildCamelCase, randomString,
 };
