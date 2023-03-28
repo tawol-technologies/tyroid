@@ -1,0 +1,1 @@
+A helper methods for javascript in ts.
