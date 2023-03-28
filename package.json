@@ -1,5 +1,5 @@
 {
-  "name": "tyroidjs",
+  "name": "@tawol-tech/tyroid",
   "version": "1.0.1",
   "description": "A helper methods for javascript in ts",
   "main": "index.js",
