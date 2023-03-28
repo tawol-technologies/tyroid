@@ -1,6 +1,6 @@
 {
   "name": "tyroidjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A helper methods for javascript in ts",
   "main": "index.js",
   "scripts": {
