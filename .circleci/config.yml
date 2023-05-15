@@ -1,0 +1,79 @@
+version: 2.1
+orbs:
+  node: circleci/node@5.0.2
+jobs:
+  checkout-build-publish-major:
+    working_directory: ~/project
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          name: Build
+          command: yarn build
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - ./dist
+      # - run:
+      #     name: Update Version
+      #     command: |
+      #       npm version 1.0.$CIRCLE_BUILD_NUM
+      #       git push --follow-tags
+      - run:
+          name: Copy Package.json
+          command: cp package.json dist/package.json
+      - run:
+          name: Publish
+          command: |
+            cd dist
+            npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+            npm publish
+  checkout-build-publish-minor:
+    working_directory: ~/project
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          name: Build
+          command: yarn build
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - ./dist
+      # - run:
+      #     name: Update Version
+      #     command: |
+      #       npm version 0.1.$CIRCLE_BUILD_NUM
+      #       git push --follow-tags
+      - run:
+          name: Copy Package.json
+          command: cp package.json dist/package.json
+      - run:
+          name: Publish
+          command: |
+            cd dist
+            npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+            npm publish
+workflows:
+  publish-major-version:
+    jobs:
+      - checkout-build-publish-major:
+          context:
+            - Credentials
+          filters:
+            branches:
+              only:
+                - main
+  publish-minor-version:
+    jobs:
+      - checkout-build-publish-major:
+          context:
+            - Credentials
+          filters:
+            branches:
+              only:
+                - develop
